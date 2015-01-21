@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Plant Catalog</string>
+    <string name="title_activity_log_on">Log On</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="log_on_button">Log On</string>
+
+</resources>
