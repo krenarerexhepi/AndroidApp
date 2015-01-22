@@ -8,4 +8,26 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uk.ac.aber.rpsrrec.ui.VisitActivity" >
 
+    <EditText
+        android:id="@+id/visit_ReserveName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/reserveName_hint"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/visit_StartRecording"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/visit_ReserveName"
+        android:layout_centerHorizontal="true"
+        android:text="@string/startRecording"
+        android:onClick="startRecording" />
+
 </RelativeLayout>
