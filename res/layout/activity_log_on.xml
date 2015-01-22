@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="uk.ac.aber.rpsrrec.ui.LogOnActivity" >
+
+    <EditText
+        android:id="@+id/logOn_UserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/userName_hint"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/logOn_UserPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logOn_UserName"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/userPhone_hint"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/logOn_UserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logOn_UserPhone"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/userEmail_hint"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/logOn_UserLogOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logOn_UserEmail"
+        android:layout_centerHorizontal="true"
+        android:text="@string/log_on_button"
+        android:onClick="userLogOn" />
+
+</RelativeLayout>
