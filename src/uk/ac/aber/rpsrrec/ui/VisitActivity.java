@@ -1,27 +1,36 @@
 package uk.ac.aber.rpsrrec.ui;
 
 import uk.ac.aber.plantcatalog.R;
+import uk.ac.aber.plantcatalog.R.id;
+import uk.ac.aber.plantcatalog.R.layout;
+import uk.ac.aber.plantcatalog.R.menu;
 import uk.ac.aber.rpsrrec.data.User;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 
-public class LogOnActivity extends Activity {
+public class VisitActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_log_on);
+		setContentView(R.layout.activity_visit);
+
+		Bundle data = getIntent().getExtras();
+		User user = data.getParcelable("user");
+
+		TextView textView = new TextView(this);
+		textView.setTextSize(40);
+		textView.setText(user.getName());
+		setContentView(textView);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.log_on, menu);
+		getMenuInflater().inflate(R.menu.visit, menu);
 		return true;
 	}
 
@@ -36,25 +45,4 @@ public class LogOnActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	/** Called when the user clicks the Log On button */
-	public void userLogOn(View view) {
-		Intent intent = new Intent(this, VisitActivity.class);
-
-		EditText editText = (EditText) findViewById(R.id.userName);
-		String userName = editText.getText().toString();
-
-		editText = (EditText) findViewById(R.id.userPhone);
-		String userPhone = editText.getText().toString();
-
-		editText = (EditText) findViewById(R.id.userEmail);
-		String userEmail = editText.getText().toString();
-
-//		User user = new User(userName, userPhone, userEmail);
-
-		intent.putExtra("user", new User(userName, userPhone, userEmail));
-
-		startActivity(intent);
-	}
-
 }
