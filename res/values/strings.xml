@@ -15,6 +15,15 @@
     <string name="reserveName_hint">Reserve Name</string>
     <string name="startRecording">Start Recording</string>
 
+<string name="speciesName">Species name</string>
+<string-array name="dafor">
+        <item>D(Dominant)</item>
+        <item>A(Abundant)</item>
+        <item>F(Frequent)</item>
+        <item>O(Occasional)</item>
+        <item>R(Rare)</item>
+    </string-array>
+
     <string name="title_activity_sightings_list">Sightings</string>
 
 </resources>
