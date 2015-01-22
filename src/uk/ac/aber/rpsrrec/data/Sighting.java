@@ -55,6 +55,7 @@ public class Sighting implements Parcelable {
 
 	public Sighting(String name, String description, char dafor,
 			Location location, Bitmap specimen, Bitmap specimenLocation) {
+
 		this.name = name;
 		assignDaforToAbundance(dafor);
 		this.location = location;
@@ -77,19 +78,14 @@ public class Sighting implements Parcelable {
 
 		if (dafor == 'D' || dafor == 'd') {
 			abundance = "Dominant";
-
 		} else if (dafor == 'A' || dafor == 'a') {
 			abundance = "Abundant";
-
 		} else if (dafor == 'F' || dafor == 'f') {
 			abundance = "Frequent";
-
 		} else if (dafor == 'O' || dafor == 'o') {
 			abundance = "Occasional";
-
 		} else if (dafor == 'R' || dafor == 'r') {
 			abundance = "Rare";
-
 		}
 	}
 	
@@ -123,7 +119,7 @@ public class Sighting implements Parcelable {
 		dest.writeString(name);
 	}
 	
-	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+	public static final Parcelable.Creator<Sighting> CREATOR = new Parcelable.Creator<Sighting>() {
 		public Sighting createFromParcel(Parcel in) {
 			return new Sighting(in);
 		}

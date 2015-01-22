@@ -1,9 +1,6 @@
 package uk.ac.aber.rpsrrec.ui;
 
 import uk.ac.aber.plantcatalog.R;
-import uk.ac.aber.plantcatalog.R.id;
-import uk.ac.aber.plantcatalog.R.layout;
-import uk.ac.aber.plantcatalog.R.menu;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;

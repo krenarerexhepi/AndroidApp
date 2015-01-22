@@ -1,5 +1,7 @@
 package uk.ac.aber.rpsrrec.data;
 
+import java.util.ArrayList;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,11 +10,19 @@ public class Visit implements Parcelable {
 	private User user;
 	private String reserve;
 	private String date;
+	private ArrayList<Sighting> sightings;
 
 	public Visit(User user, String date) {
 		this.user = user;
 		this.date = date;
+		sightings = new ArrayList<Sighting>();
 	}
+
+	public void addNewSighting(Sighting newSighting) {
+		sightings.add(newSighting);
+	}
+
+	// Getters & Setters //////////////////////////////////////////////////////
 
 	public void setReserve(String reserve) {
 		this.reserve = reserve;
