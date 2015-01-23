@@ -10,7 +10,7 @@ public class Sighting implements Parcelable {
 	// private enum Abundance {
 	// Dominant, Abundant, Frequent, Occasional, Rare;
 	// }
-
+/*
 	// location from android device
 	private Location location;
 
@@ -19,7 +19,7 @@ public class Sighting implements Parcelable {
 
 	// image of the location
 	private Bitmap specimenLocationImage;
-
+*/
 	// string for the description field
 	private String description;
 
@@ -28,7 +28,7 @@ public class Sighting implements Parcelable {
 
 	// string for plant name
 	private String name;
-
+/*
 	public Location getLocation() {
 		return location;
 	}
@@ -40,7 +40,7 @@ public class Sighting implements Parcelable {
 	public Bitmap getSpecimenLocationImage() {
 		return specimenLocationImage;
 	}
-
+*/
 	public String getDescription() {
 		return description;
 	}
@@ -53,17 +53,17 @@ public class Sighting implements Parcelable {
 		return name;
 	}
 
-	public Sighting(String name, String description, String dafor,
-			Location location, Bitmap specimen, Bitmap specimenLocation) {
+	public Sighting(String name, String description, String dafor/*,
+			Location location, Bitmap specimen, Bitmap specimenLocation*/) {
 
 		this.name = name;
 		assignDaforToAbundance(dafor);
-		this.location = location;
+		//this.location = location;
 
 		if (description != null) {
 			this.description = description;
 		}
-
+/*
 		if (specimen != null) {
 			this.specimenImage = specimen;
 		}
@@ -71,7 +71,7 @@ public class Sighting implements Parcelable {
 		if (specimenLocation != null) {
 			this.specimenLocationImage = specimenLocation;
 		}
-
+*/
 	}
 
 	private void assignDaforToAbundance(String dafor) {
@@ -90,9 +90,9 @@ public class Sighting implements Parcelable {
 	}
 	
 	public Sighting(Parcel in) {
-		specimenImage = Bitmap.CREATOR.createFromParcel(in);
+/*		specimenImage = Bitmap.CREATOR.createFromParcel(in);
 		specimenLocationImage = Bitmap.CREATOR.createFromParcel(in);
-		location = Location.CREATOR.createFromParcel(in);
+		location = Location.CREATOR.createFromParcel(in);*/
 		abundance = in.readString();
 		description = in.readString();
 		name = in.readString();
@@ -109,11 +109,11 @@ public class Sighting implements Parcelable {
 		// thing
 		// we might get null pointer if speciminImage is null, Change here if
 		// happens!!!
-		specimenImage.writeToParcel(dest, flags);
+/*		specimenImage.writeToParcel(dest, flags);
 		specimenLocationImage.writeToParcel(dest, flags);
 
 		location.writeToParcel(dest, flags);
-
+*/
 		dest.writeString(abundance);
 		dest.writeString(description);
 		dest.writeString(name);

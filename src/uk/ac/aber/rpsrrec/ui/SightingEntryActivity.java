@@ -2,6 +2,7 @@ package uk.ac.aber.rpsrrec.ui;
 
 import uk.ac.aber.plantcatalog.R;
 import uk.ac.aber.rpsrrec.data.Sighting;
+import uk.ac.aber.rpsrrec.data.Visit;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,7 +18,7 @@ import android.widget.Spinner;
 public class SightingEntryActivity extends Activity {
 
 	// TODO Implement the picture taking methods from the button
-
+	private Visit visit;
 	private Location androidGpsLocation;
 
 	@Override
@@ -26,6 +27,10 @@ public class SightingEntryActivity extends Activity {
 		// TODO also update androidGpsLocation
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sighting_entry);
+
+		Bundle data = getIntent().getExtras();
+
+		visit = data.getParcelable("visit");
 	}
 
 	@Override
@@ -72,9 +77,9 @@ public class SightingEntryActivity extends Activity {
 
 //		intent.putExtra("sighting", new Sighting(name, description, dafor,
 //				androidGpsLocation, specimenImage, locationImage));
-		
-		intent.putExtra("sighting", new Sighting(name, description, dafor,
-				null, null, null));
+
+		visit.addNewSighting(new Sighting(name, description, dafor));
+		intent.putExtra("visit", visit);
 		
 		startActivity(intent);
 	}

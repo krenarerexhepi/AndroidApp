@@ -38,12 +38,17 @@ public class Visit implements Parcelable {
 
 	public String getDate() { return date; }
 
+	public ArrayList<Sighting> getSightings() { return sightings; }
+
 	// Parcelable /////////////////////////////////////////////////////////////
 
 	private Visit(Parcel in) {
 		user = in.readParcelable(getClass().getClassLoader());
 		reserve = in.readString();
 		date = in.readString();
+		if (sightings == null)
+			sightings = new ArrayList<Sighting>();
+		in.readTypedList(sightings, Sighting.CREATOR);
 	}
 
 	@Override
@@ -56,6 +61,7 @@ public class Visit implements Parcelable {
 		dest.writeParcelable(user, flags);
 		dest.writeString(reserve);
 		dest.writeString(date);
+		dest.writeTypedList(sightings);
 	}
 
 	public static final Parcelable.Creator<Visit> CREATOR = new Parcelable.Creator<Visit>() {

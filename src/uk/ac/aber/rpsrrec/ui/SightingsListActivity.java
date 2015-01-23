@@ -20,6 +20,8 @@ import android.widget.ListView;
 
 public class SightingsListActivity extends Activity {
 
+	Visit visit;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,20 +29,14 @@ public class SightingsListActivity extends Activity {
 
 		Bundle data = getIntent().getExtras();
 
-		Visit visit = data.getParcelable("visit");
-
-		Sighting sighting = data.getParcelable("sighting");
+		visit = data.getParcelable("visit");
 
 		ListView listview = (ListView) findViewById(R.id.sightingsList_list);
-		String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-			"Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-			"Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-			"OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-			"Android", "iPhone", "WindowsMobile" };
 
+		ArrayList<Sighting> sig = visit.getSightings();
 		ArrayList<String> list = new ArrayList<String>();
-		for (int i = 0; i < values.length; ++i) {
-			list.add(values[i]);
+		for (int i = 0; i < sig.size(); ++i) {
+			list.add(sig.get(i).getName());
 		}
 		StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, list);
 
@@ -94,13 +90,9 @@ public class SightingsListActivity extends Activity {
 	/** Called when the user clicks the Start Recording button */
 	public void recordSighting(View view) {
 		Intent intent = new Intent(this, SightingEntryActivity.class);
-/*
-		EditText editText = (EditText) findViewById(R.id.visit_ReserveName);
-		String reserve = editText.getText().toString();
 
-		visit.setReserve(reserve);
 		intent.putExtra("visit", visit);
-*/
+
 		startActivity(intent);
 	}
 
