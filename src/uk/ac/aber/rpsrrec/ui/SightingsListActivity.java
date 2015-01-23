@@ -3,14 +3,19 @@ package uk.ac.aber.rpsrrec.ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import uk.ac.aber.plantcatalog.R;
+import uk.ac.aber.rpsrrec.data.Sighting;
 import uk.ac.aber.rpsrrec.data.Visit;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class SightingsListActivity extends Activity {
@@ -23,6 +28,8 @@ public class SightingsListActivity extends Activity {
 		Bundle data = getIntent().getExtras();
 
 		Visit visit = data.getParcelable("visit");
+
+		Sighting sighting = data.getParcelable("sighting");
 
 		ListView listview = (ListView) findViewById(R.id.sightingsList_list);
 		String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
@@ -82,6 +89,19 @@ public class SightingsListActivity extends Activity {
 			return true;
 		}
 
+	}
+
+	/** Called when the user clicks the Start Recording button */
+	public void recordSighting(View view) {
+		Intent intent = new Intent(this, SightingEntryActivity.class);
+/*
+		EditText editText = (EditText) findViewById(R.id.visit_ReserveName);
+		String reserve = editText.getText().toString();
+
+		visit.setReserve(reserve);
+		intent.putExtra("visit", visit);
+*/
+		startActivity(intent);
 	}
 
 }

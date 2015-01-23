@@ -62,16 +62,19 @@ public class SightingEntryActivity extends Activity {
 		EditText descriptionDone = (EditText) findViewById(R.id.description);
 		String description = descriptionDone.getText().toString();
 
-		ImageView specimenImageTaken = (ImageView) findViewById(R.id.specimenImageDisplay);
-		// this might be wrong (getting the image)
-		Bitmap specimenImage = specimenImageTaken.getDrawingCache();
+//		ImageView specimenImageTaken = (ImageView) findViewById(R.id.specimenImageDisplay);
+//		// this might be wrong (getting the image)
+//		Bitmap specimenImage = specimenImageTaken.getDrawingCache();
+//
+//		ImageView locationImageTaken = (ImageView) findViewById(R.id.locationImageDisplay);
+//		// this might be wrong (getting the image)
+//		Bitmap locationImage = locationImageTaken.getDrawingCache();
 
-		ImageView locationImageTaken = (ImageView) findViewById(R.id.locationImageDisplay);
-		// this might be wrong (getting the image)
-		Bitmap locationImage = locationImageTaken.getDrawingCache();
-
+//		intent.putExtra("sighting", new Sighting(name, description, dafor,
+//				androidGpsLocation, specimenImage, locationImage));
+		
 		intent.putExtra("sighting", new Sighting(name, description, dafor,
-				androidGpsLocation, specimenImage, locationImage));
+				null, null, null));
 		
 		startActivity(intent);
 	}
