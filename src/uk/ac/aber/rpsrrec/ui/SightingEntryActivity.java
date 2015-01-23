@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -146,6 +147,61 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 		visit.addNewSighting(new Sighting(name, description, dafor, locLat, locLng));
 		intent.putExtra("visit", visit);
 		
+		
 		startActivity(intent);
 	}
+	///// camera stuff /////
+	
+	static final int REQUEST_IMAGE_CAPTURE = 1;
+	static final int REQUEST_IMAGE_CAPT = 2;
+	private boolean locpic = false;
+	
+	//this method is for specimen picture
+	public void openCamera(View view){
+		locpic = false;
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(intent, 1);
+	}
+	
+	//this method is for location picture
+	public void openCameraloc(View view){
+		locpic = true;
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(intent, REQUEST_IMAGE_CAPT);
+	}
+	
+	private void dispatchTakePictureIntent() {
+	    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	    if(!locpic){
+	    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+	        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+	    }
+	    }else{
+	    	startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPT);
+	    }
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(!locpic){
+		if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+//	        Bundle extras = data.getExtras();
+//	        Bitmap imageBitmap = (Bitmap) extras.get("data");
+	        ImageView picDisplay = (ImageView) findViewById(R.id.specimenImageDisplay);
+	        Bitmap imageBitmap = (Bitmap) data.getExtras().get("data"); 
+	        picDisplay.setImageBitmap(imageBitmap);
+	        
+//	        picDisplay.setImageBitmap(imageBitmap);
+	    }
+		}else{
+			if (requestCode == REQUEST_IMAGE_CAPT && resultCode == RESULT_OK) {
+			ImageView picDisp = (ImageView) findViewById(R.id.locationImageDisplay);
+	        Bitmap imageBitmap = (Bitmap) data.getExtras().get("data"); 
+	        picDisp.setImageBitmap(imageBitmap);
+			}
+		}
+	    
+	    
+	}
+	
 }

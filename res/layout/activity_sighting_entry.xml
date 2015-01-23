@@ -91,7 +91,8 @@
         android:layout_marginLeft="50dp"
         android:layout_marginStart="50dp"     
         android:src="@android:drawable/ic_menu_camera"
-        android:contentDescription="@string/specimenCaptureButton_description" />
+        android:contentDescription="@string/specimenCaptureButton_description"
+        android:onClick="openCamera" />
 
     <ImageView
         android:id="@+id/specimenImageDisplay"
@@ -116,7 +117,8 @@
         android:layout_alignTop="@+id/locationImageDisplay"        
         android:layout_below="@+id/specimenImageDisplay"
         android:src="@android:drawable/ic_menu_camera"
-        android:contentDescription="@string/locationCaptureButton_description" />
+        android:contentDescription="@string/locationCaptureButton_description"
+        android:onClick="openCameraloc" />
 
     <ImageView
         android:id="@+id/locationImageDisplay"
