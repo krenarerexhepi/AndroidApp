@@ -33,6 +33,7 @@ public final class R {
         public static final int addSighting=0x7f09000f;
         public static final int captureLocationImage=0x7f09000d;
         public static final int captureSpecimenImage=0x7f09000b;
+        public static final int daforSelector=0x7f090009;
         public static final int description=0x7f09000a;
         public static final int latitudeDisplay=0x7f090006;
         public static final int latitudeLable=0x7f090005;
@@ -46,7 +47,6 @@ public final class R {
         public static final int sightingsList_list=0x7f090011;
         public static final int specimenImageDisplay=0x7f09000c;
         public static final int specimenName=0x7f090004;
-        public static final int spinner1=0x7f090009;
         public static final int visit_ReserveName=0x7f090012;
         public static final int visit_StartRecording=0x7f090013;
     }

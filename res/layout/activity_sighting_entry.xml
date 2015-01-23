@@ -62,7 +62,7 @@
         android:text="@string/longitudeDisplay" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/daforSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/latitudeLable"
@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/spinner1"
+        android:layout_below="@+id/daforSelector"
         android:layout_centerHorizontal="true"
         android:ems="20"
         android:inputType="textMultiLine"
@@ -138,5 +138,6 @@
         android:layout_below="@+id/locationImageDisplay"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="@string/sightingAddButton" />
+        android:text="@string/sightingAddButton"
+        android:onClick="addSighting" />
 </RelativeLayout>
