@@ -13,7 +13,7 @@ public class Sighting implements Parcelable {
 /*
 	// image of the specimen
 	private Bitmap specimenImage;
-///////////////////////////////////////////////
+
 	// image of the location
 	private Bitmap specimenLocationImage;
 */
