@@ -24,9 +24,7 @@ public class Visit implements Parcelable {
 
 	// Getters & Setters //////////////////////////////////////////////////////
 
-	public void setReserve(String reserve) {
-		this.reserve = reserve;
-	}
+	public void setReserve(String reserve) { this.reserve = reserve; }
 
 	public String getUserName() { return user.getName(); }
 

@@ -141,15 +141,4 @@
         android:text="@string/sightingAddButton"
         android:onClick="addSighting" />
 
-    <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/longitudeDisplay"
-        android:layout_alignBottom="@+id/longitudeDisplay"
-        android:layout_alignParentRight="true"
-        android:text="Loc"
-        android:onClick="showLocation" />
-
 </RelativeLayout>
