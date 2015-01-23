@@ -7,13 +7,10 @@ import android.os.Parcelable;
 
 public class Sighting implements Parcelable {
 
-	// private enum Abundance {
-	// Dominant, Abundant, Frequent, Occasional, Rare;
-	// }
-/*
 	// location from android device
-	private Location location;
-
+	private double locLat;
+	private double locLng;
+/*
 	// image of the specimen
 	private Bitmap specimenImage;
 
@@ -28,11 +25,15 @@ public class Sighting implements Parcelable {
 
 	// string for plant name
 	private String name;
-/*
-	public Location getLocation() {
-		return location;
+
+	public double getLat() {
+		return locLat;
 	}
 
+	public double getLng() {
+		return locLng;
+	}
+/*
 	public Bitmap getSpecimenImage() {
 		return specimenImage;
 	}
@@ -53,16 +54,15 @@ public class Sighting implements Parcelable {
 		return name;
 	}
 
-	public Sighting(String name, String description, String dafor/*,
-			Location location, Bitmap specimen, Bitmap specimenLocation*/) {
+	public Sighting(String name, String description, String dafor,
+			double locLat, double locLng/*, Bitmap specimen, Bitmap specimenLocation*/) {
 
 		this.name = name;
 		assignDaforToAbundance(dafor);
-		//this.location = location;
+		this.locLat = locLat;
+		this.locLng = locLng;
+		this.description = description;
 
-		if (description != null) {
-			this.description = description;
-		}
 /*
 		if (specimen != null) {
 			this.specimenImage = specimen;
@@ -90,9 +90,14 @@ public class Sighting implements Parcelable {
 	}
 	
 	public Sighting(Parcel in) {
-/*		specimenImage = Bitmap.CREATOR.createFromParcel(in);
+/*
+		specimenImage = Bitmap.CREATOR.createFromParcel(in);
 		specimenLocationImage = Bitmap.CREATOR.createFromParcel(in);
-		location = Location.CREATOR.createFromParcel(in);*/
+
+		location = Location.CREATOR.createFromParcel(in);
+*/
+		locLat = in.readDouble();
+		locLng = in.readDouble();
 		abundance = in.readString();
 		description = in.readString();
 		name = in.readString();
@@ -109,11 +114,13 @@ public class Sighting implements Parcelable {
 		// thing
 		// we might get null pointer if speciminImage is null, Change here if
 		// happens!!!
-/*		specimenImage.writeToParcel(dest, flags);
+/*
+		specimenImage.writeToParcel(dest, flags);
 		specimenLocationImage.writeToParcel(dest, flags);
-
-		location.writeToParcel(dest, flags);
 */
+
+		dest.writeDouble(locLat);
+		dest.writeDouble(locLng);
 		dest.writeString(abundance);
 		dest.writeString(description);
 		dest.writeString(name);

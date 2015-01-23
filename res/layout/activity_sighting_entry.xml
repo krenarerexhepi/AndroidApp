@@ -23,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/specimenName"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="11dp"
         android:text="@string/latitudeLable" />
 
@@ -140,4 +140,16 @@
         android:layout_marginTop="10dp"
         android:text="@string/sightingAddButton"
         android:onClick="addSighting" />
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/longitudeDisplay"
+        android:layout_alignBottom="@+id/longitudeDisplay"
+        android:layout_alignParentRight="true"
+        android:text="Loc"
+        android:onClick="showLocation" />
+
 </RelativeLayout>
