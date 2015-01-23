@@ -15,13 +15,20 @@ public class User implements Parcelable {
 		this.email = email;
 	}
 
-	public User(Parcel in) {
-		String[] data = new String[3];
+// Getters & Setters //////////////////////////////////////////////////////
 
-		in.readStringArray(data);
-		this.name = data[0];
-		this.phone = data[1];
-		this.email = data[2];
+	public String getName() { return name; }
+
+	public String getPhone() { return phone; }
+
+	public String getEmail() { return email; }
+
+// Parcelable /////////////////////////////////////////////////////////////
+
+	private User(Parcel in) {
+		name = in.readString();
+		phone = in.readString();
+		email = in.readString();
 	}
 
 	@Override
@@ -31,10 +38,12 @@ public class User implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeStringArray(new String[] {this.name, this.phone, this.email});
+		dest.writeString(name);
+		dest.writeString(phone);
+		dest.writeString(email);
 	}
 
-	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+	public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
 		public User createFromParcel(Parcel in) {
 			return new User(in);
 		}
@@ -43,9 +52,5 @@ public class User implements Parcelable {
 			return new User[size];
 		}
 	};
-
-	public String getName() {
-		return name;
-	}
 
 }

@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="uk.ac.aber.rpsrrec.ui.SightingEntryActivity" >
+
+    <EditText
+        android:id="@+id/specimenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:ems="20"
+        android:hint="@string/speciesName_hint" />
+
+     <TextView
+        android:id="@+id/latitudeLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/specimenName"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="11dp"
+        android:text="@string/latitudeLable" />
+
+    <TextView
+        android:id="@+id/latitudeDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/latitudeLable"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/latitudeLable"
+        android:layout_toRightOf="@+id/latitudeLable"
+        android:text="@string/latitudeDisplay" />
+    
+    <TextView
+        android:id="@+id/longitudeLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/latitudeDisplay"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_toRightOf="@+id/latitudeDisplay"
+        android:layout_toEndOf="@+id/latitudeDisplay"
+        android:text="@string/longitudeLable" />
+
+    <TextView
+        android:id="@+id/longitudeDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/longitudeLable"
+        android:layout_toRightOf="@+id/longitudeLable"
+        android:layout_toEndOf="@+id/longitudeLable"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/longitudeDisplay" />
+
+    <Spinner
+        android:id="@+id/daforSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/latitudeLable"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:entries="@array/dafor" />
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/daforSelector"
+        android:layout_centerHorizontal="true"
+        android:ems="20"
+        android:inputType="textMultiLine"
+        android:hint="@string/description_hint" />
+
+    <ImageButton
+        android:id="@+id/captureSpecimenImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/description"
+        android:layout_alignTop="@+id/specimenImageDisplay"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"     
+        android:src="@android:drawable/ic_menu_camera"
+        android:contentDescription="@string/specimenCaptureButton_description" />
+
+    <ImageView
+        android:id="@+id/specimenImageDisplay"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/description"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_toRightOf="@+id/captureSpecimenImage"
+        android:layout_toEndOf="@+id/captureSpecimenImage"
+        android:src="@android:drawable/ic_menu_gallery" 
+        android:contentDescription="@string/specimenImageDisplay_description"/>
+
+    <ImageButton
+        android:id="@+id/captureLocationImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"  
+        android:layout_alignTop="@+id/locationImageDisplay"        
+        android:layout_below="@+id/specimenImageDisplay"
+        android:src="@android:drawable/ic_menu_camera"
+        android:contentDescription="@string/locationCaptureButton_description" />
+
+    <ImageView
+        android:id="@+id/locationImageDisplay"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"        
+        android:layout_below="@+id/specimenImageDisplay"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_toRightOf="@+id/captureLocationImage"
+        android:layout_toEndOf="@+id/captureLocationImage"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:contentDescription="@string/locationImageDisplay_description" />
+
+    <Button
+        android:id="@+id/addSighting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/locationImageDisplay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/sightingAddButton"
+        android:onClick="addSighting" />
+
+</RelativeLayout>
