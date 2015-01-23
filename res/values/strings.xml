@@ -27,5 +27,15 @@
         <item>R(Rare)</item>
     </string-array>
 
+    <string name="latitudeLable">Latitude:</string>
+    <string name="latitudeDisplay">Lat</string>
+    <string name="longitudeLable">Longitude:</string>
+    <string name="longitudeDisplay">Lon</string>
+    <string name="description_hint">Description</string>
+    <string name="specimenCaptureButton_description">Specimen capture button</string>
+    <string name="specimenImageDisplay_description">Specimen image display</string>
+    <string name="locationCaptureButton_description">Location capture button</string>
+    <string name="locationImageDisplay_description">Location image display</string>
+    <string name="sightingAddButton">Add</string>
 
 </resources>
