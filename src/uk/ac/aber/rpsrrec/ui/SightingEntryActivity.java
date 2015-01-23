@@ -20,62 +20,89 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class SightingEntryActivity extends Activity {
+public class SightingEntryActivity extends Activity implements LocationListener {
 
 	// TODO Implement the picture taking methods from the button
 	private Visit visit;
-	private Location loc;
 	private double locLat;
 	private double locLng;
+	private LocationManager locationManager;
+	private String provider;
+	private TextView latView;
+	private TextView lngView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO make it incorporate the gps stuff and display it at the start
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sighting_entry);
+		latView = (TextView) findViewById(R.id.latitudeDisplay);
+		lngView = (TextView) findViewById(R.id.longitudeDisplay);
 
 		Bundle data = getIntent().getExtras();
 
 		visit = data.getParcelable("visit");
 
-		LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		LocationListener locationListener = new LocationListener() {
-		    public void onLocationChanged(Location location) {
-		      loc = location;
-		    }
+		// Selecting the location provider
+		Criteria criteria = new Criteria();
+		provider = locationManager.getBestProvider(criteria, false);
+		Location location = locationManager.getLastKnownLocation(provider);
 
-		    public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-		    public void onProviderEnabled(String provider) {}
-
-		    public void onProviderDisabled(String provider) {}
-		  };
-
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-	}
-
-	public void showLocation(View view) {
-		try {
-			Thread.sleep(5000);
-			if (loc != null) {
-				TextView latView = (TextView) findViewById(R.id.latitudeDisplay);
-				String lat = String.valueOf(locLat = loc.getLatitude());
-				TextView lngView = (TextView) findViewById(R.id.longitudeDisplay);
-				String lng = String.valueOf(locLng = loc.getLongitude());
-				latView.setText(lat);
-				lngView.setText(lng);
-			}
-			else {
-				locLat = 270;
-				locLng = 270;
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// Initialize lcoation fields
+		if (location != null) {
+			System.out.println("Provider " + provider + " has been selected.");
+			onLocationChanged(location);
+		} else {
+			latView.setText("NA");
+			lngView.setText("NA");
 		}
+
 	}
+
+	/* Request updates at startup */
+	@Override
+	protected void onResume() {
+		super.onResume();
+		locationManager.requestLocationUpdates(locationManager.NETWORK_PROVIDER, 400, 1, this);
+	}
+
+	/* Remove the locationlistener updates when Activity is paused */
+	@Override
+	protected void onPause() {
+		super.onPause();
+		locationManager.removeUpdates(this);
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		int lat = (int) (location.getLatitude());
+		int lng = (int) (location.getLongitude());
+		latView.setText(String.valueOf(lat));
+		lngView.setText(String.valueOf(lng));
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		Toast.makeText(this, "Enabled new provider " + provider,
+		Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		Toast.makeText(this, "Disabled provider " + provider,
+		Toast.LENGTH_SHORT).show();
+	}
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
