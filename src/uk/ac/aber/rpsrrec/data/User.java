@@ -15,6 +15,8 @@ public class User implements Parcelable {
 		this.email = email;
 	}
 
+// Getters & Setters //////////////////////////////////////////////////////
+
 	public String getName() { return name; }
 
 	public String getPhone() { return phone; }

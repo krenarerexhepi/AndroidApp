@@ -26,6 +26,8 @@ public class Sighting implements Parcelable {
 	// string for plant name
 	private String name;
 
+// Getters & Setters //////////////////////////////////////////////////////
+
 	public double getLat() {
 		return locLat;
 	}

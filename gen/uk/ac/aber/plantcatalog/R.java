@@ -28,15 +28,14 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f090011;
-        public static final int action_settings=0x7f090016;
+        public static final int RelativeLayout1=0x7f090010;
+        public static final int action_settings=0x7f090015;
         public static final int addSighting=0x7f09000f;
-        public static final int button1=0x7f090010;
         public static final int captureLocationImage=0x7f09000d;
         public static final int captureSpecimenImage=0x7f09000b;
         public static final int daforSelector=0x7f090009;
         public static final int description=0x7f09000a;
-        public static final int imageButton1=0x7f090013;
+        public static final int imageButton1=0x7f090012;
         public static final int latitudeDisplay=0x7f090006;
         public static final int latitudeLable=0x7f090005;
         public static final int locationImageDisplay=0x7f09000e;
@@ -46,11 +45,11 @@ public final class R {
         public static final int logOn_UserPhone=0x7f090001;
         public static final int longitudeDisplay=0x7f090008;
         public static final int longitudeLable=0x7f090007;
-        public static final int sightingsList_list=0x7f090012;
+        public static final int sightingsList_list=0x7f090011;
         public static final int specimenImageDisplay=0x7f09000c;
         public static final int specimenName=0x7f090004;
-        public static final int visit_ReserveName=0x7f090014;
-        public static final int visit_StartRecording=0x7f090015;
+        public static final int visit_ReserveName=0x7f090013;
+        public static final int visit_StartRecording=0x7f090014;
     }
     public static final class layout {
         public static final int activity_log_on=0x7f030000;
