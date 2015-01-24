@@ -1,7 +1,9 @@
 package uk.ac.aber.rpsrrec.http;
 
 import java.io.File;
+import java.io.IOException;
 
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
@@ -22,14 +24,20 @@ public class MessageBuilder {
 	 * The constructor just passes the given variables into the system
 	 * before calling the message building methods.
 	 * 
+	 * Once all building methods are called, it creates a new MessageSender with the
+	 * built multipart entity.
+	 * 
 	 * @param xmlFile The file path of the given XML file.
 	 * @param imageCount
+	 * @throws IOException 
+	 * @throws ClientProtocolException 
 	 */
-	public MessageBuilder(String xmlFile, int imageCount){
+	public MessageBuilder(String xmlFile, int imageCount) throws ClientProtocolException, IOException{
 		this.xmlFile = new File(xmlFile);
 		this.imageCount = imageCount;
 		buildMessage();
 		addImagesToMessage();
+		MessageSender sendMessage = new MessageSender(messageBuilder);
 	}
 	
 	/**

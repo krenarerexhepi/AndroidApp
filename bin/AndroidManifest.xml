@@ -7,10 +7,7 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-=======
->>>>>>> parent of 74e58b1... WIP on master: c612da4 Altered Android Manifest to include connection requirements.
 
     <application
         android:allowBackup="true"
