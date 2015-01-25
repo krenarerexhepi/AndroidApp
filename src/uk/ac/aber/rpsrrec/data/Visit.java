@@ -22,7 +22,7 @@ public class Visit implements Parcelable {
 		sightings.add(newSighting);
 	}
 
-	// Getters & Setters //////////////////////////////////////////////////////
+// Getters & Setters //////////////////////////////////////////////////////////
 
 	public void setReserve(String reserve) { this.reserve = reserve; }
 
@@ -38,7 +38,7 @@ public class Visit implements Parcelable {
 
 	public ArrayList<Sighting> getSightings() { return sightings; }
 
-	// Parcelable /////////////////////////////////////////////////////////////
+// Parcelable /////////////////////////////////////////////////////////////////
 
 	private Visit(Parcel in) {
 		user = in.readParcelable(getClass().getClassLoader());

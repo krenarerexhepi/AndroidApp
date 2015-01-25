@@ -15,7 +15,7 @@ public class User implements Parcelable {
 		this.email = email;
 	}
 
-// Getters & Setters //////////////////////////////////////////////////////
+// Getters & Setters //////////////////////////////////////////////////////////
 
 	public String getName() { return name; }
 
@@ -23,7 +23,7 @@ public class User implements Parcelable {
 
 	public String getEmail() { return email; }
 
-// Parcelable /////////////////////////////////////////////////////////////
+// Parcelable /////////////////////////////////////////////////////////////////
 
 	private User(Parcel in) {
 		name = in.readString();
