@@ -1,7 +1,9 @@
 package uk.ac.aber.rpsrrec.ui;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import uk.ac.aber.plantcatalog.R;
 import uk.ac.aber.rpsrrec.data.User;
@@ -26,9 +28,13 @@ public class VisitActivity extends Activity {
 		Bundle data = getIntent().getExtras();
 
 		User user = data.getParcelable("user");
-		String date = DateFormat.getDateTimeInstance().format(new Date());
+		//String date = DateFormat.getDateTimeInstance().format(new Date());
 
-		visit = new Visit(user, date);
+		Date date = Calendar.getInstance().getTime();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK);
+		String formattedDate = simpleDateFormat.format(date);
+
+		visit = new Visit(user, formattedDate);
 	}
 
 	@Override

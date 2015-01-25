@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/userName_hint"
         android:inputType="textPersonName" />
@@ -36,17 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/userPhone"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="@string/userEmail_hint"
         android:inputType="textEmailAddress" />
 
-    <Button
-        android:id="@+id/userLogOn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/start_button"
-        android:onClick="userLogOn" />
-    
 </RelativeLayout>

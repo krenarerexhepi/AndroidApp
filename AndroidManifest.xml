@@ -31,7 +31,11 @@
         </activity>
         <activity
             android:name="uk.ac.aber.rpsrrec.ui.SightingEntryActivity"
-            android:label="@string/title_activity_sighting_entry" >
+            android:label="@string/title_activity_sighting_entry"
+            android:parentActivityName="uk.ac.aber.rpsrrec.ui.MainActivity" >
+            <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value="uk.ac.aber.rpsrrec.ui.MainActivity" />
         </activity>
         <activity
             android:name="uk.ac.aber.rpsrrec.ui.MainActivity"

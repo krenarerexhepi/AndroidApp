@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 public class SightingEntryActivity extends Activity implements LocationListener {
 
-	// TODO Implement the picture taking methods from the button
 	private Visit visit;
 	
 	private double locLat;
@@ -36,7 +35,7 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 //	private TextView lngView;
 	
 ///// camera variables /////
-	
+
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	static final int REQUEST_IMAGE_CAPT = 2;
 	private boolean lococationPic = false;
@@ -52,7 +51,11 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 
 		Bundle data = getIntent().getExtras();
 
-		visit = data.getParcelable("visit");
+		if (data != null) {
+			visit = data.getParcelable("visit");
+		} else {
+			return;
+		}
 
 //		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 //
@@ -134,7 +137,7 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 
 	public void addSighting(View view) {
 		Intent intent = new Intent(this, MainActivity.class);
-		
+
 		EditText specimenName = (EditText) findViewById(R.id.specimenName);
 		String name = specimenName.getText().toString();
 

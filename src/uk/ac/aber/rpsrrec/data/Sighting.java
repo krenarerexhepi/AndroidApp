@@ -32,7 +32,7 @@ public class Sighting implements Parcelable {
 			this.specimenPictureState = 1;
 			this.specimenPicture = specimenPicture;
 		}
-		
+
 		if(locationPictureState){
 			this.locationPictureState = 1;
 			this.locationPicture = locationPicture;
@@ -52,6 +52,10 @@ public class Sighting implements Parcelable {
 		} else if (dafor.equals("R(Rare)")) {
 			abundance = "Rare";
 		}
+	}
+
+	public String toString() {
+		return species + " " + description;
 	}
 
 // Getters & Setters //////////////////////////////////////////////////////////

@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,8 +33,13 @@ public class MainActivity extends FragmentActivity implements LogOnDialogFragmen
 		if (data != null) {
 			visit = data.getParcelable("visit");
 
-			ListView listview = (ListView) findViewById(R.id.sightingListView);
 			ArrayList<Sighting> sightings = visit.getSightings();
+
+			ArrayAdapter<Sighting> sightingsAdapter = 
+					new ArrayAdapter<Sighting>(this, android.R.layout.simple_list_item_1, sightings);
+
+			ListView listview = (ListView) findViewById(R.id.sightingListView);
+			listview.setAdapter(sightingsAdapter);
 		}
 
 		if (visit == null) {
@@ -85,9 +91,12 @@ public class MainActivity extends FragmentActivity implements LogOnDialogFragmen
 		editText = (EditText) dialogView.findViewById(R.id.userEmail);
 		String userEmail = editText.getText().toString();
 
-		visit = new Visit(new User(userName, userPhone, userEmail), "date");
-
-		Toast.makeText(getApplicationContext(), "User details added.", Toast.LENGTH_SHORT).show();
+		if (userName.equals("") || userPhone.equals("") || userEmail.equals("")) {
+			Toast.makeText(getApplicationContext(), "User details not complete.", Toast.LENGTH_SHORT).show();
+		} else {
+			visit = new Visit(new User(userName, userPhone, userEmail), "date");
+			Toast.makeText(getApplicationContext(), "User details added.", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override
