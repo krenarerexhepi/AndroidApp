@@ -23,7 +23,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/locationView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" >
+        android:layout_marginTop="40dp" >
     </ListView>
+
+    <Button
+        android:id="@+id/addSightingButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:drawable/ic_menu_add"
+        android:onClick="recordSighting" />
 
 </RelativeLayout>

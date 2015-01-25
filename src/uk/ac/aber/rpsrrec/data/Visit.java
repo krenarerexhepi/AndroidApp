@@ -26,6 +26,8 @@ public class Visit implements Parcelable {
 
 	public void setReserve(String reserve) { this.reserve = reserve; }
 
+	public void setUser(User user) { this.user = user; }
+
 	public String getUserName() { return user.getName(); }
 
 	public String getUserPhone() { return user.getPhone(); }

@@ -1,14 +1,24 @@
 package uk.ac.aber.rpsrrec.ui;
 
+import java.util.ArrayList;
+
 import uk.ac.aber.plantcatalog.R;
+import uk.ac.aber.rpsrrec.data.Sighting;
+import uk.ac.aber.rpsrrec.data.User;
 import uk.ac.aber.rpsrrec.data.Visit;
+import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity implements LogOnDialogFragment.NoticeDialogListener {
+public class MainActivity extends FragmentActivity implements LogOnDialogFragment.LogOnDialogListener {
 
 	Visit visit;
 
@@ -17,8 +27,19 @@ public class MainActivity extends FragmentActivity implements LogOnDialogFragmen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		LogOnDialogFragment logOn = new LogOnDialogFragment();
-		logOn.show(getFragmentManager(), "log_on");
+		Bundle data = getIntent().getExtras();
+
+		if (data != null) {
+			visit = data.getParcelable("visit");
+
+			ListView listview = (ListView) findViewById(R.id.sightingListView);
+			ArrayList<Sighting> sightings = visit.getSightings();
+		}
+
+		if (visit == null) {
+			LogOnDialogFragment logOn = new LogOnDialogFragment();
+			logOn.show(getFragmentManager(), "log_on");
+		}
 	}
 
 	@Override
@@ -40,15 +61,38 @@ public class MainActivity extends FragmentActivity implements LogOnDialogFragmen
 		return super.onOptionsItemSelected(item);
 	}
 
+	public void recordSighting(View view) {
+		Intent intent = new Intent(this, SightingEntryActivity.class);
+
+		intent.putExtra("visit", visit);
+
+		startActivity(intent);
+	}
+
+// LOGON DIALOG ///////////////////////////////////////////////////////////////
+
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
-		// TODO Auto-generated method stub
-		
+
+		Dialog dialogView = dialog.getDialog();
+
+		EditText editText = (EditText) dialogView.findViewById(R.id.userName);
+		String userName = editText.getText().toString();
+
+		editText = (EditText) dialogView.findViewById(R.id.userPhone);
+		String userPhone = editText.getText().toString();
+
+		editText = (EditText) dialogView.findViewById(R.id.userEmail);
+		String userEmail = editText.getText().toString();
+
+		visit = new Visit(new User(userName, userPhone, userEmail), "date");
+
+		Toast.makeText(getApplicationContext(), "User details added.", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(getApplicationContext(), "User details required.", Toast.LENGTH_SHORT).show();
 	}
+
 }
