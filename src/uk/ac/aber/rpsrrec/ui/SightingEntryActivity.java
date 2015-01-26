@@ -166,7 +166,7 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 //		 Sighting sight = new Sighting(name, description, dafor, 5.6, 5.6, specimenImage , locationImage, specimenPic ,lococationPic);
 //			intent.putExtra("visit", sight);
 
-		visit.addNewSighting(new Sighting(name, description, dafor, locLat, locLng, specimenImage, locationImage, specimenPic, lococationPic));
+//		visit.addNewSighting(new Sighting(name, description, dafor, locLat, locLng, specimenImage, locationImage, specimenPic, lococationPic));
 		intent.putExtra("visit", visit);
 
 		startActivity(intent);

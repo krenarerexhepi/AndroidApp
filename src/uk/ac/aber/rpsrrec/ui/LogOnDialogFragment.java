@@ -8,8 +8,6 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 public class LogOnDialogFragment extends DialogFragment {
 
@@ -33,13 +31,13 @@ public class LogOnDialogFragment extends DialogFragment {
 			.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int id) {
-					fragmentListener.onDialogPositiveClick(LogOnDialogFragment.this);
+					fragmentListener.onLogOnDialogPositiveClick(LogOnDialogFragment.this);
 				}
 			})
 			.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int id) {
-					fragmentListener.onDialogNegativeClick(LogOnDialogFragment.this);
+					fragmentListener.onLogOnDialogNegativeClick(LogOnDialogFragment.this);
 				}
 			});
 
@@ -53,15 +51,14 @@ public class LogOnDialogFragment extends DialogFragment {
 	}
 
 	public interface LogOnDialogListener {
-		public void onDialogPositiveClick(DialogFragment dialog);
-		public void onDialogNegativeClick(DialogFragment dialog);
+		public void onLogOnDialogPositiveClick(DialogFragment dialog);
+		public void onLogOnDialogNegativeClick(DialogFragment dialog);
 	}
 
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 
-		// Verify that the host activity implements the callback interface
 		try {
 			fragmentListener = (LogOnDialogListener) activity;
 		} catch (ClassCastException e) {

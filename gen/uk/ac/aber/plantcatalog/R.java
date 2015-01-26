@@ -62,6 +62,7 @@ public final class R {
         public static final int activity_visit=0x7f030004;
         public static final int dialog_log_on=0x7f030005;
         public static final int fragment_log_on=0x7f030006;
+        public static final int fragment_sighting_entry=0x7f030007;
     }
     public static final class menu {
         public static final int log_on=0x7f080000;
@@ -73,7 +74,7 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
-        public static final int cancel=0x7f05001e;
+        public static final int cancel=0x7f050020;
         public static final int description_hint=0x7f050010;
         public static final int empty=0x7f050002;
         public static final int hello_world=0x7f050017;
@@ -85,9 +86,11 @@ public final class R {
         public static final int longitudeDisplay=0x7f05000f;
         public static final int longitudeLable=0x7f05000e;
         public static final int no_location=0x7f050018;
-        public static final int ok=0x7f05001d;
+        public static final int ok=0x7f05001e;
         public static final int reserveName_hint=0x7f050007;
+        public static final int save=0x7f05001f;
         public static final int sightingAddButton=0x7f050015;
+        public static final int sighting_entry_dialog=0x7f05001a;
         public static final int speciesName_hint=0x7f05000b;
         public static final int specimenCaptureButton_description=0x7f050011;
         public static final int specimenImageDisplay_description=0x7f050012;
@@ -98,10 +101,10 @@ public final class R {
         public static final int title_activity_sighting_entry=0x7f05000a;
         public static final int title_activity_sightings_list=0x7f050009;
         public static final int title_activity_visit=0x7f050006;
-        public static final int userEmail_hint=0x7f05001c;
+        public static final int userEmail_hint=0x7f05001d;
         public static final int userLogOnDetails=0x7f050004;
-        public static final int userName_hint=0x7f05001a;
-        public static final int userPhone_hint=0x7f05001b;
+        public static final int userName_hint=0x7f05001b;
+        public static final int userPhone_hint=0x7f05001c;
     }
     public static final class style {
         /** 
