@@ -87,14 +87,15 @@
             android:inputType="textMultiLine"
             android:hint="@string/description_hint" />
 
-        <Button
+        <ImageButton
             android:id="@+id/captureSpecimenImage"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
             android:layout_below="@+id/description"
+            android:layout_marginLeft="64dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:drawable/btn_default_holo_light"
             android:contentDescription="@string/specimenCaptureButton_description" />
 
         <ImageView
@@ -110,7 +111,7 @@
             android:src="@android:drawable/ic_menu_gallery" 
             android:contentDescription="@string/specimenImageDisplay_description"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/captureLocationImage"
             android:layout_width="64dp"
             android:layout_height="64dp"

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class SightingEntryFragment extends DialogFragment {
 
@@ -20,7 +21,7 @@ public class SightingEntryFragment extends DialogFragment {
 
 		View view = inflater.inflate(R.layout.fragment_sighting_entry, container, false);
 
-		Button specimenPictureButton = (Button) view.findViewById(R.id.captureSpecimenImage);
+		ImageButton specimenPictureButton = (ImageButton) view.findViewById(R.id.captureSpecimenImage);
 		specimenPictureButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -28,7 +29,7 @@ public class SightingEntryFragment extends DialogFragment {
 			}
 		});
 
-		Button locationPictureButton = (Button) view.findViewById(R.id.captureLocationImage);
+		ImageButton locationPictureButton = (ImageButton) view.findViewById(R.id.captureLocationImage);
 		locationPictureButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
