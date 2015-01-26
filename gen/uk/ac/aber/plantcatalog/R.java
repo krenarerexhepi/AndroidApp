@@ -29,9 +29,10 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f090013;
-        public static final int action_settings=0x7f090018;
+        public static final int action_settings=0x7f09001a;
         public static final int addSighting=0x7f090012;
         public static final int addSightingButton=0x7f090006;
+        public static final int cancel=0x7f090018;
         public static final int captureLocationImage=0x7f090010;
         public static final int captureSpecimenImage=0x7f09000e;
         public static final int daforSelector=0x7f09000c;
@@ -43,6 +44,7 @@ public final class R {
         public static final int locationView=0x7f090004;
         public static final int longitudeDisplay=0x7f09000b;
         public static final int longitudeLable=0x7f09000a;
+        public static final int save=0x7f090019;
         public static final int sightingListView=0x7f090005;
         public static final int sightingsList_list=0x7f090014;
         public static final int specimenImageDisplay=0x7f09000f;

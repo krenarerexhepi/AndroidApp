@@ -12,6 +12,10 @@ public class Visit implements Parcelable {
 	private String date;
 	private ArrayList<Sighting> sightings;
 
+	public Visit() {
+		sightings = new ArrayList<Sighting>();
+	}
+
 	public Visit(User user, String date) {
 		this.user = user;
 		this.date = date;
@@ -27,6 +31,10 @@ public class Visit implements Parcelable {
 	public void setReserve(String reserve) { this.reserve = reserve; }
 
 	public void setUser(User user) { this.user = user; }
+
+	public void setDate(String date) { this.date = date; }
+
+	public User getUser() { return user; }
 
 	public String getUserName() { return user.getName(); }
 

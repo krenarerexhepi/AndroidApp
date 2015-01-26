@@ -10,33 +10,37 @@ public class Sighting implements Parcelable {
 	private String abundance;
 	private String description;
 
-//	private double locLat;
-//	private double locLng;
-//
-//	private Bitmap specimenPicture;
-//	private Bitmap locationPicture;
-//	private int specimenPictureState;
-//	private int locationPictureState;
+	private double locLat;
+	private double locLng;
 
-	public Sighting(String species, String dafor, String description/*, double locLat, double locLng,
+	private Bitmap specimenPicture;
+	private Bitmap locationPicture;
+	private int specimenPictureState;
+	private int locationPictureState;
+
+	public Sighting(String species, String dafor, String description, double locLat, double locLng,
 			Bitmap specimenPicture, Bitmap locationPicture,
-			boolean specimenPictureState, boolean locationPictureState*/) {
+			boolean specimenPictureState, boolean locationPictureState) {
 
 		this.species = species;
 		assignDaforToAbundance(dafor);
 		this.description = description;
-//		this.locLat = locLat;
-//		this.locLng = locLng;
-//
-//		if(specimenPictureState) {
-//			this.specimenPictureState = 1;
-//			this.specimenPicture = specimenPicture;
-//		}
-//
-//		if(locationPictureState){
-//			this.locationPictureState = 1;
-//			this.locationPicture = locationPicture;
-//		}
+		this.locLat = locLat;
+		this.locLng = locLng;
+
+		if(specimenPictureState) {
+			this.specimenPictureState = 1;
+			this.specimenPicture = specimenPicture;
+		} else {
+			this.specimenPictureState = 0;
+		}
+
+		if(locationPictureState){
+			this.locationPictureState = 1;
+			this.locationPicture = locationPicture;
+		} else {
+			this.locationPictureState = 0;
+		}
 	}
 
 	private void assignDaforToAbundance(String dafor) {
@@ -54,6 +58,7 @@ public class Sighting implements Parcelable {
 		}
 	}
 
+	@Override
 	public String toString() {
 		return species + " " + description;
 	}
@@ -66,13 +71,13 @@ public class Sighting implements Parcelable {
 
 	public String getDescription() { return description; }
 
-//	public double getLat() { return locLat; }
-//
-//	public double getLng() { return locLng; }
-//
-//	public Bitmap getSpecimenPicture(){ return specimenPicture; }
-//	
-//	public Bitmap getLocationPicture(){ return locationPicture; }
+	public double getLat() { return locLat; }
+
+	public double getLng() { return locLng; }
+
+	public Bitmap getSpecimenPicture(){ return specimenPicture; }
+	
+	public Bitmap getLocationPicture(){ return locationPicture; }
 
 // Parcelable /////////////////////////////////////////////////////////////////
 
@@ -81,19 +86,22 @@ public class Sighting implements Parcelable {
 		species = in.readString();
 		abundance = in.readString();
 		description = in.readString();
-//		locLat = in.readDouble();
-//		locLng = in.readDouble();
-//
-//		specimenPictureState = in.readInt();
-//		locationPictureState = in.readInt();
-//
-//		if (specimenPictureState == 1) {
-//			specimenPicture = in.readParcelable(Bitmap.class.getClassLoader());
-//		}
-//
-//		if (locationPictureState == 1) {
-//			locationPicture = in.readParcelable(Bitmap.class.getClassLoader());
-//		}
+		locLat = in.readDouble();
+		locLng = in.readDouble();
+
+		specimenPictureState = in.readInt();
+		locationPictureState = in.readInt();
+
+		if (specimenPictureState == 1) {
+			specimenPicture = in.readParcelable(Bitmap.class.getClassLoader());
+		}
+
+		if (locationPictureState == 1) {
+			locationPicture = in.readParcelable(Bitmap.class.getClassLoader());
+		}
+
+		specimenPictureState = 0;
+		locationPictureState = 0;
 	}
 
 	@Override
@@ -107,19 +115,19 @@ public class Sighting implements Parcelable {
 		dest.writeString(species);
 		dest.writeString(abundance);
 		dest.writeString(description);
-//		dest.writeDouble(locLat);
-//		dest.writeDouble(locLng);
-//
-//		dest.writeInt(specimenPictureState);
-//		dest.writeInt(locationPictureState);
-//
-//		if (specimenPictureState == 1) {
-//			dest.writeParcelable(specimenPicture, 1);		
-//		}
-//
-//		if (locationPictureState == 1) {
-//			dest.writeParcelable(locationPicture, 1);
-//		}
+		dest.writeDouble(locLat);
+		dest.writeDouble(locLng);
+
+		dest.writeInt(specimenPictureState);
+		dest.writeInt(locationPictureState);
+
+		if (specimenPictureState == 1) {
+			dest.writeParcelable(specimenPicture, 1);		
+		}
+
+		if (locationPictureState == 1) {
+			dest.writeParcelable(locationPicture, 1);
+		}
 	}
 
 	public static final Parcelable.Creator<Sighting> CREATOR = new Parcelable.Creator<Sighting>() {

@@ -87,7 +87,7 @@
             android:inputType="textMultiLine"
             android:hint="@string/description_hint" />
 
-        <ImageButton
+        <Button
             android:id="@+id/captureSpecimenImage"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -95,9 +95,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginLeft="64dp"
             android:layout_below="@+id/description"
-            android:src="@android:drawable/ic_menu_camera"
-            android:contentDescription="@string/specimenCaptureButton_description"
-            android:onClick="openCamera" />
+            android:contentDescription="@string/specimenCaptureButton_description" />
 
         <ImageView
             android:id="@+id/specimenImageDisplay"
@@ -112,7 +110,7 @@
             android:src="@android:drawable/ic_menu_gallery" 
             android:contentDescription="@string/specimenImageDisplay_description"/>
 
-        <ImageButton
+        <Button
             android:id="@+id/captureLocationImage"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -120,9 +118,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginLeft="64dp"
             android:layout_below="@+id/captureSpecimenImage"
-            android:src="@android:drawable/ic_menu_camera"
-            android:contentDescription="@string/locationCaptureButton_description"
-            android:onClick="openCamera" />
+            android:contentDescription="@string/locationCaptureButton_description" />
 
         <ImageView
             android:id="@+id/locationImageDisplay"
@@ -136,6 +132,29 @@
             android:layout_toRightOf="@+id/captureLocationImage"
             android:src="@android:drawable/ic_menu_gallery" 
             android:contentDescription="@string/locationImageDisplay_description"/>
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/locationImageDisplay"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/cancel"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:text="@string/save" />
 
     </RelativeLayout>
 

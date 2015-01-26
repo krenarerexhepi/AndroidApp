@@ -10,7 +10,7 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -31,15 +31,12 @@
         </activity>
         <activity
             android:name="uk.ac.aber.rpsrrec.ui.SightingEntryActivity"
-            android:label="@string/title_activity_sighting_entry"
-            android:parentActivityName="uk.ac.aber.rpsrrec.ui.MainActivity" >
-            <meta-data
-	            android:name="android.support.PARENT_ACTIVITY"
-	            android:value="uk.ac.aber.rpsrrec.ui.MainActivity" />
+            android:label="@string/title_activity_sighting_entry" >
         </activity>
         <activity
             android:name="uk.ac.aber.rpsrrec.ui.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
