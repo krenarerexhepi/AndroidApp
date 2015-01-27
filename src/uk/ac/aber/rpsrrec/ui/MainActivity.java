@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import uk.ac.aber.plantcatalog.R;
-import uk.ac.aber.rpsrrec.data.ReadReservesXml;
 import uk.ac.aber.rpsrrec.data.SendToServer;
 import uk.ac.aber.rpsrrec.data.Sighting;
 import uk.ac.aber.rpsrrec.data.User;
@@ -16,6 +15,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Criteria;
@@ -38,13 +38,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-/**
- * Missing:
- * Sending preparations/summary page
- * Species/reserve search for easier user selection
- * Downloading species and reserve data from database
- */
 
 public class MainActivity extends FragmentActivity implements
 		LogOnDialogFragment.LogOnDialogListener,
@@ -73,22 +66,12 @@ public class MainActivity extends FragmentActivity implements
 	private ListView listView;
 
 	private int sightingPosition = -1;
-	
-	////// mo shit
-	private String[] reserves;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		/////////////////////////////
-		ReadReservesXml reservesList = new ReadReservesXml();
-		reserves = reservesList.readReserves();
-		
-		
-		/////////////////////
-		
+
 		if (savedInstanceState != null) {
 			visit = savedInstanceState.getParcelable(STATE_VISIT);
 		}
@@ -133,9 +116,7 @@ public class MainActivity extends FragmentActivity implements
 			updateLocation();
 		}
 		else if (id == R.id.action_send_visit) {
-			// TODO Send visit through HTTP Post
 			SendToServer send = new SendToServer(visit);
-//			send = null;
 			visit = new Visit();
 			updateSightingList();
 			updateLocation();
@@ -155,6 +136,7 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	public void selectReserve() {
+
 		ReserveEntryFragment reserveEntry = new ReserveEntryFragment();
 		reserveEntry.show(getFragmentManager(), "reserve_entry");
 		addDate();
@@ -232,15 +214,15 @@ public class MainActivity extends FragmentActivity implements
 // RESERVE ENTRY LISTENER /////////////////////////////////////////////////////
 
 	@Override
-	public void onCreateSetReserveSearch(DialogFragment dialog) {
-		
-		Dialog dialogView = dialog.getDialog();
+	public void onCreateReserveSearch(View view) {
+		Resources r = getResources();
+		String [] list = r.getStringArray(R.array.reserves_names);
 
-		AutoCompleteTextView auto = (AutoCompleteTextView) dialogView.findViewById(R.id.reserveName);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 ,reserves);
-		auto.setThreshold(1);
-		auto.setAdapter(adapter);
-		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+ 
+		AutoCompleteTextView textView = (AutoCompleteTextView) view.findViewById(R.id.reserveName);
+		textView.setThreshold(1);
+        textView.setAdapter(adapter);
 	}
 
 	@Override
@@ -268,6 +250,18 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 // SIGHTING ENTRY LISTENER ////////////////////////////////////////////////////
+
+	@Override
+	public void onCreateSightingSearch(View view) {
+		Resources r = getResources();
+		String [] list = r.getStringArray(R.array.species_names);
+
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+ 
+		AutoCompleteTextView textView = (AutoCompleteTextView) view.findViewById(R.id.specimenName);
+		textView.setThreshold(1);
+        textView.setAdapter(adapter);
+	}
 
 	@Override
 	public void onCreateGetLocation(DialogFragment dialog) {

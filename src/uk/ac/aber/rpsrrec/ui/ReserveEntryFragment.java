@@ -8,6 +8,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 
 public class ReserveEntryFragment extends DialogFragment {
 
@@ -19,9 +20,10 @@ public class ReserveEntryFragment extends DialogFragment {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 		LayoutInflater inflater = getActivity().getLayoutInflater();
+		View view = inflater.inflate(R.layout.fragment_reserve_entry, null);
 
 		builder
-			.setView(inflater.inflate(R.layout.fragment_reserve_entry, null))
+			.setView(view)
 			.setTitle(R.string.reserve_entry_dialog)
 			.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 				@Override
@@ -36,9 +38,7 @@ public class ReserveEntryFragment extends DialogFragment {
 				}
 			});
 
-//		Dialog dialog = builder.create();
-
-		fragmentListener.onCreateSetReserveSearch(ReserveEntryFragment.this);
+		fragmentListener.onCreateReserveSearch(view);
 
 		return builder.create();
 	}
@@ -46,7 +46,7 @@ public class ReserveEntryFragment extends DialogFragment {
 	public interface ReserveEntryDialogListener {
 		public void onReserveEntryDialogPositiveClick(DialogFragment dialog);
 		public void onReserveEntryDialogNegativeClick(DialogFragment dialog);
-		public void onCreateSetReserveSearch(DialogFragment dialog);
+		public void onCreateReserveSearch(View view);
 	}
 
 	@Override
