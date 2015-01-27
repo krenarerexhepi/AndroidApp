@@ -46,15 +46,15 @@ public class Sighting implements Parcelable {
 	private void assignDaforToAbundance(String dafor) {
 
 		if (dafor.equals("D(Dominant)")) {
-			abundance = "Dominant";
+			abundance = "D";
 		} else if (dafor.equals("A(Abundant)")) {
-			abundance = "Abundant";
+			abundance = "A";
 		} else if (dafor.equals("F(Frequent)")) {
-			abundance = "Frequent";
+			abundance = "F";
 		} else if (dafor.equals("O(Occasional)")) {
-			abundance = "Occasional";
+			abundance = "O";
 		} else if (dafor.equals("R(Rare)")) {
-			abundance = "Rare";
+			abundance = "R";
 		}
 	}
 

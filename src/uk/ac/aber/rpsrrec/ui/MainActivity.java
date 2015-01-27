@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import uk.ac.aber.plantcatalog.R;
+import uk.ac.aber.rpsrrec.data.SendToServer;
 import uk.ac.aber.rpsrrec.data.Sighting;
 import uk.ac.aber.rpsrrec.data.User;
 import uk.ac.aber.rpsrrec.data.Visit;
@@ -120,6 +121,8 @@ public class MainActivity extends FragmentActivity implements
 		}
 		else if (id == R.id.action_send_visit) {
 			// TODO Send visit through HTTP Post
+			SendToServer send = new SendToServer(visit);
+//			send = null;
 			visit = new Visit();
 			updateSightingList();
 			updateLocation();
@@ -141,14 +144,12 @@ public class MainActivity extends FragmentActivity implements
 	public void selectReserve() {
 		ReserveEntryFragment reserveEntry = new ReserveEntryFragment();
 		reserveEntry.show(getFragmentManager(), "reserve_entry");
-		if (visit.getDate() == null) {
-			addDate();
-		}
+		addDate();
 	}
 
 	public void addDate() {
 		Date date = Calendar.getInstance().getTime();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.UK);
 		String formattedDate = simpleDateFormat.format(date);
 		visit.setDate(formattedDate);
 	}
