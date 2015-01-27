@@ -12,12 +12,7 @@ import android.view.LayoutInflater;
 public class LogOnDialogFragment extends DialogFragment {
 
 	private LogOnDialogListener fragmentListener;
-/*
-	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_log_on, container, false);
-	}
-*/
+
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -42,12 +37,6 @@ public class LogOnDialogFragment extends DialogFragment {
 			});
 
 		return builder.create();
-/*
-		Dialog dialog = super.onCreateDialog(savedInstanceState);
-		dialog.setTitle(R.string.log_on_dialog);
-
-		return dialog;
-*/
 	}
 
 	public interface LogOnDialogListener {
