@@ -3,9 +3,15 @@
     tools:context="uk.ac.aber.plantcatalog.MainActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_delete_visit"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_delete_visit"/>
+
+    <item
+        android:id="@+id/action_send_visit"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_send_visit"/>
 
 </menu>

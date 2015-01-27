@@ -31,15 +31,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Missing: Soft keyboard on auto-focus edit fields Parcelable or any other way
- * to restore session after closing/minimising app Camera stuff Sending
- * preparations/summary page Proper location Users reserve selection (another
- * dialog?) Species/reserve search for easier user selection Updating
- * species/reserve data from database
+ * Missing: 
+ * Parcelable or any other way to restore session after closing/minimising app
+ * Sending preparations/summary page
+ * Species/reserve search for easier user selection
+ * Downloading species and reserve data from database
  */
 
 public class MainActivity extends FragmentActivity implements
 		LogOnDialogFragment.LogOnDialogListener,
+		ReserveEntryFragment.ReserveEntryDialogListener,
 		SightingEntryFragment.SightingEntryListener,
 		LocationListener {
 
@@ -75,19 +76,18 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		if (id == R.id.action_delete_visit) {
+			visit = null;
+		}
+		else if (id == R.id.action_send_visit) {
+			// TODO Send visit through HTTP Post
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -95,6 +95,15 @@ public class MainActivity extends FragmentActivity implements
 	public void recordSighting(View view) {
 		SightingEntryFragment sightingEntry = new SightingEntryFragment();
 		sightingEntry.show(getFragmentManager(), "sighting_entry");
+	}
+
+	public void updateSightingList() {
+		ArrayList<Sighting> sightings = visit.getSightings();
+
+		ArrayAdapter<Sighting> sightingsAdapter = new ArrayAdapter<Sighting>(this, android.R.layout.simple_list_item_1, sightings);
+
+		ListView listview = (ListView) findViewById(R.id.sightingListView);
+		listview.setAdapter(sightingsAdapter);
 	}
 
 // LOGON LISTENER /////////////////////////////////////////////////////////////
@@ -122,11 +131,46 @@ public class MainActivity extends FragmentActivity implements
 			Toast.makeText(getApplicationContext(), "User details added",
 					Toast.LENGTH_SHORT).show();
 		}
+
+		ReserveEntryFragment reserveEntry = new ReserveEntryFragment();
+		reserveEntry.show(getFragmentManager(), "reserve_entry");
 	}
 
 	@Override
 	public void onLogOnDialogNegativeClick(DialogFragment dialog) {
 		Toast.makeText(getApplicationContext(), "User details required",
+				Toast.LENGTH_SHORT).show();
+
+		ReserveEntryFragment reserveEntry = new ReserveEntryFragment();
+		reserveEntry.show(getFragmentManager(), "reserve_entry");
+	}
+
+// RESERVE ENTRY LISTENER /////////////////////////////////////////////////////
+
+	@Override
+	public void onReserveEntryDialogPositiveClick(DialogFragment dialog) {
+
+		Dialog dialogView = dialog.getDialog();
+
+		EditText editText = (EditText) dialogView.findViewById(R.id.reserveName);
+		String reserveName = editText.getText().toString();
+
+		if(reserveName.equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Reserve details not complete", Toast.LENGTH_SHORT).show();
+		} else {
+			visit.setReserve(reserveName);
+			Toast.makeText(getApplicationContext(), "Reserve details added",
+					Toast.LENGTH_SHORT).show();
+			TextView reserveView = (TextView) findViewById(R.id.locationView);
+			reserveView.setText(reserveName);
+		}
+
+	}
+
+	@Override
+	public void onReserveEntryDialogNegativeClick(DialogFragment dialog) {
+		Toast.makeText(getApplicationContext(), "Reserve details required",
 				Toast.LENGTH_SHORT).show();
 	}
 
@@ -135,30 +179,15 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onCreateGetLocation(DialogFragment dialog) {
 
-		Dialog dialogView = dialog.getDialog();
-
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
-		TextView latView = (TextView) dialogView.findViewById(R.id.latitudeDisplay);
-		TextView lngView = (TextView) dialogView.findViewById(R.id.longitudeDisplay);
-
-		// Selecting the location provider
 		Criteria criteria = new Criteria();
 		provider = locationManager.getBestProvider(criteria, false);
 		Location location = locationManager.getLastKnownLocation(provider);
 
-		// Initialize lcoation fields
 		if (location != null) {
-			//System.out.println("Provider " + provider + " has been selected.");
 			onLocationChanged(location);
-
 			Toast.makeText(this, "LAT: " + locLat + "LNG: " + locLng, Toast.LENGTH_SHORT).show();
-
-//			int lat = (int) locLat;
-//			int lng = (int) locLng;
-//			latView.setText(String.valueOf(lat));
-//			lngView.setText(String.valueOf(lng));
 		}
 		else {
 			Toast.makeText(this, "Cant find location using " + provider, Toast.LENGTH_SHORT).show();
@@ -188,27 +217,21 @@ public class MainActivity extends FragmentActivity implements
 		Bitmap locationImage = ((BitmapDrawable)locationImageTaken.getDrawable()).getBitmap();
 
 		if (visit != null) {
-			visit.addNewSighting(new Sighting(name, dafor, description, locLat, locLng, specimenImage, locationImage, specimenPic , locationPic));
+			visit.addNewSighting(new Sighting(name, dafor, description, locLat, locLng, specimenImage, locationImage, specimenPic, locationPic));
 		}
 
 		dialog.dismiss();
 
 		Toast.makeText(getApplicationContext(), "Sighting details added", Toast.LENGTH_SHORT).show();
 
-		ArrayList<Sighting> sightings = visit.getSightings();
-
-		ArrayAdapter<Sighting> sightingsAdapter = new ArrayAdapter<Sighting>(this, android.R.layout.simple_list_item_1, sightings);
-
-		ListView listview = (ListView) findViewById(R.id.sightingListView);
-		listview.setAdapter(sightingsAdapter);
+		updateSightingList();
 	}
 
 	@Override
 	public void onSightingEntryNegativeClick(DialogFragment dialog) {
+
 		Toast.makeText(getApplicationContext(), "Sighting entry canceled", Toast.LENGTH_SHORT).show();
-
 		dialog.dismiss();
-
 	}
 
 // CAMERA MANAGER /////////////////////////////////////////////////////////////
@@ -264,6 +287,8 @@ public class MainActivity extends FragmentActivity implements
 			}
 		}
 	}
+
+// LOCATION MANAGER ///////////////////////////////////////////////////////////
 
 	@Override
 	public void onLocationChanged(Location location) {
