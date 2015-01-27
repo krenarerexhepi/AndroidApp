@@ -28,8 +28,10 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_delete_visit=0x7f09000f;
-        public static final int action_send_visit=0x7f090010;
+        public static final int action_add_user=0x7f09000f;
+        public static final int action_delete_visit=0x7f090011;
+        public static final int action_select_reserve=0x7f090010;
+        public static final int action_send_visit=0x7f090012;
         public static final int addSightingButton=0x7f090002;
         public static final int anchor=0x7f09000a;
         public static final int captureLocationImage=0x7f09000d;
@@ -57,29 +59,31 @@ public final class R {
         public static final int main=0x7f080000;
     }
     public static final class string {
-        public static final int action_delete_visit=0x7f050001;
-        public static final int action_send_visit=0x7f050002;
+        public static final int action_add_user=0x7f050001;
+        public static final int action_delete_visit=0x7f050003;
+        public static final int action_select_reserve=0x7f050002;
+        public static final int action_send_visit=0x7f050004;
         public static final int app_name=0x7f050000;
-        public static final int cancel=0x7f050016;
-        public static final int description_hint=0x7f050009;
-        public static final int hello_world=0x7f05000c;
-        public static final int log_on_dialog=0x7f05000f;
-        public static final int no_location=0x7f05000d;
-        public static final int ok=0x7f050014;
-        public static final int reserveName_hint=0x7f050004;
-        public static final int reserve_entry_dialog=0x7f05000e;
-        public static final int save=0x7f050015;
-        public static final int sightingAddButton=0x7f05000a;
-        public static final int sighting_entry_dialog=0x7f050010;
-        public static final int speciesName_hint=0x7f050008;
-        public static final int startRecording=0x7f050005;
-        public static final int title_activity_main=0x7f05000b;
-        public static final int title_activity_sighting_entry=0x7f050007;
-        public static final int title_activity_sightings_list=0x7f050006;
-        public static final int userEmail_hint=0x7f050013;
-        public static final int userLogOnDetails=0x7f050003;
-        public static final int userName_hint=0x7f050011;
-        public static final int userPhone_hint=0x7f050012;
+        public static final int cancel=0x7f050018;
+        public static final int description_hint=0x7f05000b;
+        public static final int hello_world=0x7f05000e;
+        public static final int log_on_dialog=0x7f050011;
+        public static final int no_location=0x7f05000f;
+        public static final int ok=0x7f050016;
+        public static final int reserveName_hint=0x7f050006;
+        public static final int reserve_entry_dialog=0x7f050010;
+        public static final int save=0x7f050017;
+        public static final int sightingAddButton=0x7f05000c;
+        public static final int sighting_entry_dialog=0x7f050012;
+        public static final int speciesName_hint=0x7f05000a;
+        public static final int startRecording=0x7f050007;
+        public static final int title_activity_main=0x7f05000d;
+        public static final int title_activity_sighting_entry=0x7f050009;
+        public static final int title_activity_sightings_list=0x7f050008;
+        public static final int userEmail_hint=0x7f050015;
+        public static final int userLogOnDetails=0x7f050005;
+        public static final int userName_hint=0x7f050013;
+        public static final int userPhone_hint=0x7f050014;
     }
     public static final class style {
         /** 

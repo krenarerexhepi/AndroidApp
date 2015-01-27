@@ -3,6 +3,8 @@
 
     <string name="app_name">Plant Catalog</string>
 
+    <string name="action_add_user">Add contact details</string>
+    <string name="action_select_reserve">Select reserve</string>
     <string name="action_delete_visit">Delete current visit</string>
     <string name="action_send_visit">Send current visit</string>
 

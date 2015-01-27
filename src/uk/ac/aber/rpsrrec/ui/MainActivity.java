@@ -48,6 +48,8 @@ public class MainActivity extends FragmentActivity implements
 
 	private DialogFragment dialog;
 
+	private static final String STATE_VISIT = "visit";
+
 	private static final int REQUEST_IMAGE_CAPTURE_SPECIMEN = 1;
 	private static final int REQUEST_IMAGE_CAPTURE_LOCATION = 2;
 	private boolean specimenPic = false;
@@ -64,6 +66,9 @@ public class MainActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		if (savedInstanceState != null) {
+			visit = savedInstanceState.getParcelable(STATE_VISIT);
+		}
 		if (visit == null) {
 			visit = new Visit();
 		}
@@ -83,13 +88,40 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.action_delete_visit) {
-			visit = null;
+		if (id == R.id.action_add_user) {
+			addUser();
+		}
+		else if (id == R.id.action_select_reserve) {
+			selectReserve();
+		}
+		else if (id == R.id.action_delete_visit) {
+			visit = new Visit();
+			updateSightingList();
+			TextView reserveView = (TextView) findViewById(R.id.locationView);
+			reserveView.setText("No Location Selected");
 		}
 		else if (id == R.id.action_send_visit) {
 			// TODO Send visit through HTTP Post
+			visit = new Visit();
+			updateSightingList();
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		savedInstanceState.putParcelable(STATE_VISIT, visit);
+		super.onSaveInstanceState(savedInstanceState);
+	}
+
+	public void addUser() {
+		LogOnDialogFragment logOn = new LogOnDialogFragment();
+		logOn.show(getFragmentManager(), "log_on");
+	}
+
+	public void selectReserve() {
+		ReserveEntryFragment reserveEntry = new ReserveEntryFragment();
+		reserveEntry.show(getFragmentManager(), "reserve_entry");
 	}
 
 	public void recordSighting(View view) {
@@ -132,8 +164,9 @@ public class MainActivity extends FragmentActivity implements
 					Toast.LENGTH_SHORT).show();
 		}
 
-		ReserveEntryFragment reserveEntry = new ReserveEntryFragment();
-		reserveEntry.show(getFragmentManager(), "reserve_entry");
+		if (visit.getReserveName() == null) {
+			selectReserve();
+		}
 	}
 
 	@Override
@@ -141,8 +174,9 @@ public class MainActivity extends FragmentActivity implements
 		Toast.makeText(getApplicationContext(), "User details required",
 				Toast.LENGTH_SHORT).show();
 
-		ReserveEntryFragment reserveEntry = new ReserveEntryFragment();
-		reserveEntry.show(getFragmentManager(), "reserve_entry");
+		if (visit.getReserveName() == null) {
+			selectReserve();
+		}
 	}
 
 // RESERVE ENTRY LISTENER /////////////////////////////////////////////////////
@@ -215,6 +249,11 @@ public class MainActivity extends FragmentActivity implements
 		ImageView locationImageTaken = (ImageView) dialogView.findViewById(R.id.locationImageDisplay);
 
 		Bitmap locationImage = ((BitmapDrawable)locationImageTaken.getDrawable()).getBitmap();
+
+		if (name.equals("")) {
+			Toast.makeText(getApplicationContext(), "Species is required", Toast.LENGTH_SHORT).show();
+			return;
+		}
 
 		if (visit != null) {
 			visit.addNewSighting(new Sighting(name, dafor, description, locLat, locLng, specimenImage, locationImage, specimenPic, locationPic));
