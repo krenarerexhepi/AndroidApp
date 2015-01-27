@@ -40,6 +40,8 @@ public class SightingEntryFragment extends DialogFragment {
 				}
 			});
 
+		fragmentListener.onCreateGetLocation(SightingEntryFragment.this);
+
 		ImageButton specimenPictureButton = (ImageButton) view.findViewById(R.id.captureSpecimenImage);
 		specimenPictureButton.setOnClickListener(new OnClickListener() {
 			@Override

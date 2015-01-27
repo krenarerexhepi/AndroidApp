@@ -31,8 +31,9 @@ public class SightingEditFragment extends DialogFragment {
 			.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int id) {
-					entryFragmentListener.onSightingEntryPositiveClick(SightingEditFragment.this);
-					editFragmentListener.onSightingEditNegativeClick(SightingEditFragment.this);
+					if(entryFragmentListener.onSightingEntryPositiveClick(SightingEditFragment.this)) {
+						editFragmentListener.onSightingEditNegativeClick(SightingEditFragment.this);
+					}
 				}
 			})
 			.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {

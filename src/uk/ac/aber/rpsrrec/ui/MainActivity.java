@@ -1,6 +1,10 @@
 package uk.ac.aber.rpsrrec.ui;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import uk.ac.aber.plantcatalog.R;
 import uk.ac.aber.rpsrrec.data.Sighting;
@@ -24,7 +28,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -37,7 +40,6 @@ import android.widget.Toast;
  * Sending preparations/summary page
  * Species/reserve search for easier user selection
  * Downloading species and reserve data from database
- * Date
  */
 
 public class MainActivity extends FragmentActivity implements
@@ -139,6 +141,16 @@ public class MainActivity extends FragmentActivity implements
 	public void selectReserve() {
 		ReserveEntryFragment reserveEntry = new ReserveEntryFragment();
 		reserveEntry.show(getFragmentManager(), "reserve_entry");
+		if (visit.getDate() == null) {
+			addDate();
+		}
+	}
+
+	public void addDate() {
+		Date date = Calendar.getInstance().getTime();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK);
+		String formattedDate = simpleDateFormat.format(date);
+		visit.setDate(formattedDate);
 	}
 
 	public void updateLocation() {
@@ -186,8 +198,6 @@ public class MainActivity extends FragmentActivity implements
 		} else {
 			visit.setUser(new User(userName, userPhone, userEmail));
 			visit.setDate("date");
-			Toast.makeText(getApplicationContext(), "User details added",
-					Toast.LENGTH_SHORT).show();
 		}
 
 		if (visit.getReserveName() == null) {
@@ -220,12 +230,9 @@ public class MainActivity extends FragmentActivity implements
 					"Reserve details not complete", Toast.LENGTH_SHORT).show();
 		} else {
 			visit.setReserve(reserveName);
-			Toast.makeText(getApplicationContext(), "Reserve details added",
-					Toast.LENGTH_SHORT).show();
 			TextView reserveView = (TextView) findViewById(R.id.locationView);
 			reserveView.setText(reserveName);
 		}
-
 	}
 
 	@Override
@@ -255,7 +262,7 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public void onSightingEntryPositiveClick(DialogFragment dialog) {
+	public boolean onSightingEntryPositiveClick(DialogFragment dialog) {
 
 		Dialog dialogView = dialog.getDialog();
 
@@ -278,14 +285,18 @@ public class MainActivity extends FragmentActivity implements
 
 		if (name.equals("")) {
 			Toast.makeText(getApplicationContext(), "Species is required", Toast.LENGTH_SHORT).show();
-			return;
+			return false;
 		}
 
 		if (visit != null) {
 			visit.addNewSighting(new Sighting(name, dafor, description, locLat, locLng, specimenImage, locationImage, specimenPic, locationPic));
+			updateSightingList();
+			return true;
 		}
-
-		updateSightingList();
+		else {
+			Toast.makeText(getApplicationContext(), "No current visit", Toast.LENGTH_SHORT).show();
+			return false;
+		}
 	}
 
 	@Override
