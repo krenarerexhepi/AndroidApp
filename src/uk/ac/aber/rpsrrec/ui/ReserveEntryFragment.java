@@ -36,12 +36,17 @@ public class ReserveEntryFragment extends DialogFragment {
 				}
 			});
 
+//		Dialog dialog = builder.create();
+
+		fragmentListener.onCreateSetReserveSearch(ReserveEntryFragment.this);
+
 		return builder.create();
 	}
 
 	public interface ReserveEntryDialogListener {
 		public void onReserveEntryDialogPositiveClick(DialogFragment dialog);
 		public void onReserveEntryDialogNegativeClick(DialogFragment dialog);
+		public void onCreateSetReserveSearch(DialogFragment dialog);
 	}
 
 	@Override

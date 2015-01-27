@@ -9,16 +9,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uk.ac.aber.rpsrrec.ui.ReserveEntryActivity" >
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/reserveName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/reserveName_hint"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
 
 </RelativeLayout>

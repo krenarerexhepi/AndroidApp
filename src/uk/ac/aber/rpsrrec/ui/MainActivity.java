@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import uk.ac.aber.plantcatalog.R;
+import uk.ac.aber.rpsrrec.data.ReadReservesXml;
 import uk.ac.aber.rpsrrec.data.SendToServer;
 import uk.ac.aber.rpsrrec.data.Sighting;
 import uk.ac.aber.rpsrrec.data.User;
@@ -29,6 +30,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -70,12 +73,22 @@ public class MainActivity extends FragmentActivity implements
 	private ListView listView;
 
 	private int sightingPosition = -1;
+	
+	////// mo shit
+	private String[] reserves;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		/////////////////////////////
+		ReadReservesXml reservesList = new ReadReservesXml();
+		reserves = reservesList.readReserves();
+		
+		
+		/////////////////////
+		
 		if (savedInstanceState != null) {
 			visit = savedInstanceState.getParcelable(STATE_VISIT);
 		}
@@ -217,6 +230,18 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 // RESERVE ENTRY LISTENER /////////////////////////////////////////////////////
+
+	@Override
+	public void onCreateSetReserveSearch(DialogFragment dialog) {
+		
+		Dialog dialogView = dialog.getDialog();
+
+		AutoCompleteTextView auto = (AutoCompleteTextView) dialogView.findViewById(R.id.reserveName);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 ,reserves);
+		auto.setThreshold(1);
+		auto.setAdapter(adapter);
+		
+	}
 
 	@Override
 	public void onReserveEntryDialogPositiveClick(DialogFragment dialog) {
