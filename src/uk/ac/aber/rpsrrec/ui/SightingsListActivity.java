@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 
 public class SightingsListActivity extends Activity {
@@ -36,7 +35,7 @@ public class SightingsListActivity extends Activity {
 		ArrayList<Sighting> sig = visit.getSightings();
 		ArrayList<String> list = new ArrayList<String>();
 		for (int i = 0; i < sig.size(); ++i) {
-			list.add(sig.get(i).getName());
+			list.add(sig.get(i).getSpecies());
 		}
 		StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, list);
 

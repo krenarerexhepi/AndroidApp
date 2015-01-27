@@ -2,23 +2,19 @@
 <resources>
 
     <string name="app_name">Plant Catalog</string>
-    <string name="action_settings">Settings</string>
-    <string name="empty">Empty</string>
 
-    <string name="title_activity_log_on">Log On</string>
-    <string name="userName_hint">Name</string>
-    <string name="userPhone_hint">Phone</string>
-    <string name="userEmail_hint">Email</string>
-    <string name="log_on_button">Log On</string>
+    <string name="action_add_user">Add contact details</string>
+    <string name="action_select_reserve">Select reserve</string>
+    <string name="action_delete_visit">Delete current visit</string>
+    <string name="action_send_visit">Send current visit</string>
 
-    <string name="title_activity_visit">Visit Details</string>
-    <string name="reserveName_hint">Reserve Name</string>
+    <string name="userLogOnDetails">Enter contact details</string>
+    <string name="reserveName_hint">Reserve name</string>
     <string name="startRecording">Start Recording</string>
-
     <string name="title_activity_sightings_list">Sightings</string>
-
     <string name="title_activity_sighting_entry">Sighting Entry</string>
     <string name="speciesName_hint">Species name</string>
+
     <string-array name="dafor">
         <item>D(Dominant)</item>
         <item>A(Abundant)</item>
@@ -27,15 +23,21 @@
         <item>R(Rare)</item>
     </string-array>
 
-    <string name="latitudeLable">Latitude:</string>
-    <string name="latitudeDisplay">Lat</string>
-    <string name="longitudeLable">Longitude:</string>
-    <string name="longitudeDisplay">Lon</string>
     <string name="description_hint">Description</string>
-    <string name="specimenCaptureButton_description">Specimen capture button</string>
-    <string name="specimenImageDisplay_description">Specimen image display</string>
-    <string name="locationCaptureButton_description">Location capture button</string>
-    <string name="locationImageDisplay_description">Location image display</string>
     <string name="sightingAddButton">Add</string>
+    <string name="title_activity_main">Plant Catalog</string>
+    <string name="hello_world">Hello world!</string>
 
+    <string name="no_location">No Location Selected</string>
+
+    <string name="reserve_entry_dialog">Reserve name</string>
+    <string name="log_on_dialog">Contact details</string>
+    <string name="sighting_entry_dialog">Sighting details</string>
+    <string name="userName_hint">Name</string>
+    <string name="userPhone_hint">Phone</string>
+    <string name="userEmail_hint">Email</string>
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -41,13 +41,13 @@ public class LogOnActivity extends Activity {
 	public void userLogOn(View view) {
 		Intent intent = new Intent(this, VisitActivity.class);
 
-		EditText editText = (EditText) findViewById(R.id.logOn_UserName);
+		EditText editText = (EditText) findViewById(R.id.userName);
 		String userName = editText.getText().toString();
 
-		editText = (EditText) findViewById(R.id.logOn_UserPhone);
+		editText = (EditText) findViewById(R.id.userPhone);
 		String userPhone = editText.getText().toString();
 
-		editText = (EditText) findViewById(R.id.logOn_UserEmail);
+		editText = (EditText) findViewById(R.id.userEmail);
 		String userEmail = editText.getText().toString();
 
 		intent.putExtra("user", new User(userName, userPhone, userEmail));

@@ -4,42 +4,38 @@ import uk.ac.aber.plantcatalog.R;
 import uk.ac.aber.rpsrrec.data.Sighting;
 import uk.ac.aber.rpsrrec.data.Visit;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
+//import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
+//import android.widget.TextView;
 import android.widget.Toast;
 
 public class SightingEntryActivity extends Activity implements LocationListener {
 
-	// TODO Implement the picture taking methods from the button
 	private Visit visit;
 	
 	private double locLat;
 	private double locLng;
 	
-	private LocationManager locationManager;
-	private String provider;
-	
-	private TextView latView;
-	private TextView lngView;
+//	private LocationManager locationManager;
+//	private String provider;
+//	
+//	private TextView latView;
+//	private TextView lngView;
 	
 ///// camera variables /////
-	
+
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	static final int REQUEST_IMAGE_CAPT = 2;
 	private boolean lococationPic = false;
@@ -50,12 +46,16 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 		// TODO make it incorporate the gps stuff and display it at the start
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sighting_entry);
-		latView = (TextView) findViewById(R.id.latitudeDisplay);
-		lngView = (TextView) findViewById(R.id.longitudeDisplay);
+//		latView = (TextView) findViewById(R.id.latitudeDisplay);
+//		lngView = (TextView) findViewById(R.id.longitudeDisplay);
 
 		Bundle data = getIntent().getExtras();
 
-		visit = data.getParcelable("visit");
+		if (data != null) {
+			visit = data.getParcelable("visit");
+		} else {
+			return;
+		}
 
 //		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 //
@@ -136,9 +136,8 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 	}
 
 	public void addSighting(View view) {
-//		Intent intent = new Intent(this, SightingsListActivity.class);
-		Intent intent = new Intent(this, SightingsListActivity.class);
-		
+		Intent intent = new Intent(this, MainActivity.class);
+
 		EditText specimenName = (EditText) findViewById(R.id.specimenName);
 		String name = specimenName.getText().toString();
 
@@ -166,14 +165,14 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 		
 //		 Sighting sight = new Sighting(name, description, dafor, 5.6, 5.6, specimenImage , locationImage, specimenPic ,lococationPic);
 //			intent.putExtra("visit", sight);
-			
-		visit.addNewSighting( new Sighting(name, description, dafor, locLat, locLng, specimenImage , locationImage, specimenPic ,lococationPic));
-			intent.putExtra("visit", visit);
-		
-		
+
+//		visit.addNewSighting(new Sighting(name, description, dafor, locLat, locLng, specimenImage, locationImage, specimenPic, lococationPic));
+		intent.putExtra("visit", visit);
+
 		startActivity(intent);
 	}
-	///// camera stuff /////
+
+// CAMERA /////////////////////////////////////////////////////////////////////
 	
 //	static final int REQUEST_IMAGE_CAPTURE = 1;
 //	static final int REQUEST_IMAGE_CAPT = 2;
@@ -193,17 +192,18 @@ public class SightingEntryActivity extends Activity implements LocationListener 
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(intent, REQUEST_IMAGE_CAPT);
 	}
-	
-	private void dispatchTakePictureIntent() {
-	    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-	    if(!lococationPic){
-	    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-	        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-	    }
-	    }else{
-	    	startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPT);
-	    }
-	}
+
+/** Never used? */
+//	private void dispatchTakePictureIntent() {
+//	    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//	    if(!lococationPic){
+//	    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//	        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//	    }
+//	    }else{
+//	    	startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPT);
+//	    }
+//	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
