@@ -12,9 +12,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
-public class SightingEntryFragment extends DialogFragment {
+public class SightingEditFragment extends DialogFragment {
 
-	private SightingEntryListener fragmentListener;
+	private SightingEntryListener entryFragmentListener;
+	private SightingEditListener editFragmentListener;
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -30,13 +31,20 @@ public class SightingEntryFragment extends DialogFragment {
 			.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int id) {
-					fragmentListener.onSightingEntryPositiveClick(SightingEntryFragment.this);
+					entryFragmentListener.onSightingEntryPositiveClick(SightingEditFragment.this);
+					editFragmentListener.onSightingEditNegativeClick(SightingEditFragment.this);
 				}
 			})
 			.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int id) {
-					fragmentListener.onSightingEntryNeutralClick(SightingEntryFragment.this);
+					entryFragmentListener.onSightingEntryNeutralClick(SightingEditFragment.this);
+				}
+			})
+			.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int id) {
+					editFragmentListener.onSightingEditNegativeClick(SightingEditFragment.this);
 				}
 			});
 
@@ -44,7 +52,7 @@ public class SightingEntryFragment extends DialogFragment {
 		specimenPictureButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				fragmentListener.onCameraSpeciesClick(SightingEntryFragment.this);
+				entryFragmentListener.onCameraSpeciesClick(SightingEditFragment.this);
 			}
 		});
 
@@ -52,7 +60,7 @@ public class SightingEntryFragment extends DialogFragment {
 		locationPictureButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				fragmentListener.onCameraLocationClick(SightingEntryFragment.this);
+				entryFragmentListener.onCameraLocationClick(SightingEditFragment.this);
 			}
 		});
 
@@ -64,9 +72,10 @@ public class SightingEntryFragment extends DialogFragment {
 		super.onAttach(activity);
 
 		try {
-			fragmentListener = (SightingEntryListener) activity;
+			entryFragmentListener = (SightingEntryListener) activity;
+			editFragmentListener = (SightingEditListener) activity;
 		} catch (ClassCastException e) {
-			throw new ClassCastException(activity.toString() + " must implement SightingEntryListener");
+			throw new ClassCastException(activity.toString() + " must implement SightingEntryListener and SightingEditListener");
 		}
 	}
 
